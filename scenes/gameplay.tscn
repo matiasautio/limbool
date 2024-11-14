@@ -1,0 +1,207 @@
+[gd_scene load_steps=21 format=3 uid="uid://cxm138nuu0gqk"]
+
+[ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_hbrj0"]
+[ext_resource type="PackedScene" uid="uid://bokhgs0207rm" path="res://3d art/tunnel.glb" id="2_jrd3a"]
+[ext_resource type="Shader" path="res://vfx/water.gdshader" id="3_hwn7k"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_y2qid"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="4_w5veh"]
+[ext_resource type="Script" path="res://scripts/change_water_color_trigger.gd" id="6_t7php"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6lqi6"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -18.159, -1, -1, -18.159, -1, -1, 1, -1, 1, 1, -1, 1, -18.159, 1, -1, -18.159, 1, 1, 1, 1, -1, 1, 1, -1, -18.159, 1, 1, -18.159, 1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, -1, -1, -18.159, 1, -1, 1, -1, -1, 1, -1, -1, -18.159, 1, -1, -18.159, 1, -1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4w53w"]
+size = Vector3(1.96, 1, 20)
+subdivide_width = 5
+subdivide_depth = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngonp"]
+render_priority = 0
+shader = ExtResource("3_hwn7k")
+shader_parameter/out_color = Color(0.2, 0.580392, 1, 1)
+shader_parameter/amount = 0.2
+shader_parameter/speed = 0.7
+shader_parameter/beer_factor = 3.0
+shader_parameter/metallic = 0.1
+shader_parameter/specular = 0.5
+shader_parameter/roughness = 0.2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_q3qan"]
+data = PackedVector3Array(-0.98, 0.5, 10, 0.98, 0.5, 10, -0.98, -0.5, 10, 0.98, 0.5, 10, 0.98, -0.5, 10, -0.98, -0.5, 10, 0.98, 0.5, -10, -0.98, 0.5, -10, 0.98, -0.5, -10, -0.98, 0.5, -10, -0.98, -0.5, -10, 0.98, -0.5, -10, 0.98, 0.5, 10, 0.98, 0.5, -10, 0.98, -0.5, 10, 0.98, 0.5, -10, 0.98, -0.5, -10, 0.98, -0.5, 10, -0.98, 0.5, -10, -0.98, 0.5, 10, -0.98, -0.5, -10, -0.98, 0.5, 10, -0.98, -0.5, 10, -0.98, -0.5, -10, 0.98, 0.5, 10, -0.98, 0.5, 10, 0.98, 0.5, -10, -0.98, 0.5, 10, -0.98, 0.5, -10, 0.98, 0.5, -10, -0.98, -0.5, 10, 0.98, -0.5, 10, -0.98, -0.5, -10, 0.98, -0.5, 10, 0.98, -0.5, -10, -0.98, -0.5, -10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xa6ct"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_35ojn"]
+
+[sub_resource type="Environment" id="Environment_5our6"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+
+[sub_resource type="TorusMesh" id="TorusMesh_d8v62"]
+inner_radius = 0.2
+outer_radius = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xovu"]
+albedo_color = Color(1, 0.529412, 1, 1)
+metallic_specular = 0.25
+roughness = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2ybe"]
+size = Vector3(1, 0.298584, 1)
+
+[sub_resource type="Animation" id="Animation_e5ac3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Donut:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w2j4x"]
+resource_name = "bounce"
+length = 2.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Donut:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.4),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k1sts"]
+_data = {
+"RESET": SubResource("Animation_e5ac3"),
+"bounce": SubResource("Animation_w2j4x")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cddo6"]
+size = Vector3(2.46094, 2.08984, 1)
+
+[node name="Gameplay" type="Node3D" node_paths=PackedStringArray("color_triggers", "water")]
+script = ExtResource("1_hbrj0")
+color_triggers = [NodePath("ChangeWaterColorTrigger"), NodePath("ChangeWaterColorTrigger2")]
+water = NodePath("Tunnel/Water")
+
+[node name="Tunnel" type="Node3D" parent="."]
+
+[node name="tunnel" parent="Tunnel" instance=ExtResource("2_jrd3a")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tunnel/tunnel"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tunnel/tunnel/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConcavePolygonShape3D_6lqi6")
+
+[node name="Water" type="MeshInstance3D" parent="Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.99916)
+mesh = SubResource("BoxMesh_4w53w")
+surface_material_override/0 = SubResource("ShaderMaterial_ngonp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tunnel"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tunnel/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.99916)
+shape = SubResource("ConcavePolygonShape3D_q3qan")
+
+[node name="Obstacle" type="MeshInstance3D" parent="Tunnel"]
+transform = Transform3D(0.659637, 0, 0, 0, 1, 0, 0, 0, 1, 0.618707, 0.261931, -7.51702)
+mesh = SubResource("BoxMesh_xa6ct")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tunnel/Obstacle"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tunnel/Obstacle/StaticBody3D"]
+shape = SubResource("BoxShape3D_35ojn")
+
+[node name="Obstacle2" type="MeshInstance3D" parent="Tunnel"]
+transform = Transform3D(0.659637, 0, 0, 0, 1, 0, 0, 0, 1, -0.678149, 0.261931, -10.6867)
+mesh = SubResource("BoxMesh_xa6ct")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tunnel/Obstacle2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tunnel/Obstacle2/StaticBody3D"]
+shape = SubResource("BoxShape3D_35ojn")
+
+[node name="Obstacle3" type="MeshInstance3D" parent="Tunnel"]
+transform = Transform3D(0.402093, 0, 0, 0, 3.01197, 0, 0, 0, 0.413846, 0.409704, 0.261931, -14.5006)
+mesh = SubResource("BoxMesh_xa6ct")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tunnel/Obstacle3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tunnel/Obstacle3/StaticBody3D"]
+shape = SubResource("BoxShape3D_35ojn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5our6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.481788, -0.392747, 0.783345, -0.282621, 0.91581, 0.285337, -0.829461, -0.0839181, -0.552225, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 2.7)
+fov = 50.0
+script = ExtResource("3_y2qid")
+lerp_speed = 1.0
+target = NodePath("../Player")
+offset = Vector3(0, 0.75, 2.7)
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.651522, 0)
+script = ExtResource("4_w5veh")
+speed = 2.0
+acceleration = 5.0
+friction = 0.025
+current = true
+camera = NodePath("../Camera3D")
+
+[node name="Donut" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("TorusMesh_d8v62")
+surface_material_override/0 = SubResource("StandardMaterial3D_6xovu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00134277, 0)
+shape = SubResource("BoxShape3D_l2ybe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_k1sts")
+}
+autoplay = "bounce"
+
+[node name="ChangeWaterColorTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.26803)
+script = ExtResource("6_t7php")
+color = Color(0.945098, 0, 0.894118, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeWaterColorTrigger"]
+shape = SubResource("BoxShape3D_cddo6")
+
+[node name="ChangeWaterColorTrigger2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6724)
+script = ExtResource("6_t7php")
+color = Color(0.393117, 0.665645, 0, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeWaterColorTrigger2"]
+shape = SubResource("BoxShape3D_cddo6")
+
+[editable path="Tunnel/tunnel"]
