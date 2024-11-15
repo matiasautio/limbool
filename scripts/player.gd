@@ -59,8 +59,11 @@ func _physics_process(delta):
 	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
+		if inventory.get_current_item() != null:
+			inventory.get_current_item().on_frob()
 		if door != null:
 			if door.open(inventory.get_current_item_name()):
+				inventory.get_current_item().on_frob()
 				inventory.remove_from_inventory(inventory.get_current_item())
 		#velocity.y = jump_strength
 		#snap_vector = Vector3.ZERO
