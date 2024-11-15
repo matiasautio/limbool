@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cxm138nuu0gqk"]
+[gd_scene load_steps=37 format=3 uid="uid://cxm138nuu0gqk"]
 
 [ext_resource type="Script" path="res://scenes/gameplay.gd" id="1_hbrj0"]
 [ext_resource type="PackedScene" uid="uid://bokhgs0207rm" path="res://3d art/tunnel.glb" id="2_jrd3a"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://x0qm87775wti" path="res://3d art/test_environment_2.glb" id="4_icjwi"]
 [ext_resource type="PackedScene" uid="uid://cr2ersq7g6q6f" path="res://scenes/player.tscn" id="5_qdvoe"]
 [ext_resource type="Script" path="res://scripts/change_water_color_trigger.gd" id="6_t7php"]
+[ext_resource type="PackedScene" uid="uid://rwi1rb352noo" path="res://inventory/inventory.tscn" id="7_eqjub"]
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="8_twwtc"]
+[ext_resource type="Script" path="res://scenes/door.gd" id="9_56og5"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pb0bj"]
 data = PackedVector3Array(-1, -1, 1, -1, 1, -18.159, -1, -1, -18.159, -1, -1, 1, -1, 1, 1, -1, 1, -18.159, 1, -1, -18.159, 1, 1, 1, 1, -1, 1, 1, -1, -18.159, 1, 1, -18.159, 1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, -1, -1, -18.159, 1, -1, 1, -1, -1, 1, -1, -1, -18.159, 1, -1, -18.159, 1, -1, 1, 1, 1, 1, -1, 5.9323, 1, -1, 1, 1, 1, 1, 1, 1, 5.9323, 1, -1, 5.9323, 1, -1, 1, 1, -1, 5.9323, -18.159, -1, 1, -18.159, -1, 1, 1, -1, 5.9323, 1, -1, 5.9323, -18.159)
@@ -89,6 +92,15 @@ tonemap_mode = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cddo6"]
 size = Vector3(2.46094, 2.08984, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4f2mp"]
+size = Vector3(2, 2, 0.25)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xilr"]
+data = PackedVector3Array(-1, 1, 0.125, 1, 1, 0.125, -1, -1, 0.125, 1, 1, 0.125, 1, -1, 0.125, -1, -1, 0.125, 1, 1, -0.125, -1, 1, -0.125, 1, -1, -0.125, -1, 1, -0.125, -1, -1, -0.125, 1, -1, -0.125, 1, 1, 0.125, 1, 1, -0.125, 1, -1, 0.125, 1, 1, -0.125, 1, -1, -0.125, 1, -1, 0.125, -1, 1, -0.125, -1, 1, 0.125, -1, -1, -0.125, -1, 1, 0.125, -1, -1, 0.125, -1, -1, -0.125, 1, 1, 0.125, -1, 1, 0.125, 1, 1, -0.125, -1, 1, 0.125, -1, 1, -0.125, 1, 1, -0.125, -1, -1, 0.125, 1, -1, 0.125, -1, -1, -0.125, 1, -1, 0.125, 1, -1, -0.125, -1, -1, -0.125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_phfsf"]
+size = Vector3(1.99902, 2.08691, 1)
 
 [node name="Gameplay" type="Node3D" node_paths=PackedStringArray("color_triggers", "water")]
 script = ExtResource("1_hbrj0")
@@ -238,10 +250,11 @@ transform = Transform3D(-0.481788, -0.392747, 0.783345, -0.282621, 0.91581, 0.28
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 visible = false
 
-[node name="Player" parent="." instance=ExtResource("5_qdvoe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42929, 0.996576, -16.6622)
+[node name="Player" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("5_qdvoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42929, 0.996576, -0.304792)
 acceleration = 1.0
 friction = 0.01
+inventory = NodePath("../Inventory")
 
 [node name="ChangeWaterColorTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.26803)
@@ -260,6 +273,37 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChangeWaterColorTrigger2"]
 shape = SubResource("BoxShape3D_cddo6")
+
+[node name="Inventory" parent="." instance=ExtResource("7_eqjub")]
+
+[node name="Item" parent="." instance=ExtResource("8_twwtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0518384, 0.539752, -3.35536)
+
+[node name="Item2" parent="." instance=ExtResource("8_twwtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.800315, 0.539752, -4.94448)
+
+[node name="Item3" parent="." instance=ExtResource("8_twwtc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129807, 0.539752, -6.39962)
+
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.513808, -4.19413)
+script = ExtResource("9_56og5")
+metadata/_edit_group_ = true
+
+[node name="DoorMesh" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655863, 0)
+mesh = SubResource("BoxMesh_4f2mp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Door/DoorMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/DoorMesh/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0xilr")
+
+[node name="Area3D" type="Area3D" parent="Door"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.543457, 0)
+shape = SubResource("BoxShape3D_phfsf")
 
 [editable path="Tunnel/tunnel"]
 [editable path="Tunnel/test_environment_2"]

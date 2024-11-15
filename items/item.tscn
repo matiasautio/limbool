@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqk75tlbxhxh2"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_tv7rc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uir4v"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mq42g"]
+size = Vector3(0.245117, 0.240234, 0.242188)
+
+[node name="Item" type="Node3D"]
+script = ExtResource("1_tv7rc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_uir4v")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_mq42g")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

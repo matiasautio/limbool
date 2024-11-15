@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://rwi1rb352noo"]
+
+[ext_resource type="Script" path="res://inventory/inventory.gd" id="1_qmd3u"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_isegn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Environment" id="Environment_fjki7"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_nwcfj"]
+resource_name = "rotate_item"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ItemSlot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0), Vector3(0.785398, -6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54sms"]
+_data = {
+"rotate_item": SubResource("Animation_nwcfj")
+}
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qmd3u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -128.0
+offset_right = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("ViewportTexture_isegn")
+
+[node name="ItemName" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -33.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center][/center]"
+
+[node name="ItemAmount" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 33.0
+grow_horizontal = 0
+bbcode_enabled = true
+text = "[right][/right]"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+environment = SubResource("Environment_fjki7")
+fov = 37.8493
+
+[node name="ItemSlot" type="Node3D" parent="SubViewport"]
+transform = Transform3D(1, -1.23634e-07, -1.23634e-07, 0, 0.707107, -0.707107, 1.74846e-07, 0.707107, 0.707107, 0, 100, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport"]
+libraries = {
+"": SubResource("AnimationLibrary_54sms")
+}
+autoplay = "rotate_item"

@@ -19,6 +19,10 @@ const ANIMATION_BLEND : float = 7.0
 @onready var spring_arm_pivot : Node3D = $SpringArmPivot
 @onready var animator : AnimationTree = $AnimationTree
 
+@export var inventory : Control
+
+var door = null
+
 
 #func _ready():
 	#Input.add_joy_mapping("030000000d0f0000ab01000095000000,HORIPAD STEAM,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b16,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X")
@@ -53,10 +57,13 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, friction)
 	
 	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
-	var is_jumping := is_on_floor() and Input.is_action_just_pressed("ui_accept")
+	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
-		velocity.y = jump_strength
-		snap_vector = Vector3.ZERO
+		if door != null:
+			if door.open(inventory.get_current_item_name()):
+				inventory.remove_from_inventory(inventory.get_current_item())
+		#velocity.y = jump_strength
+		#snap_vector = Vector3.ZERO
 	elif just_landed:
 		snap_vector = Vector3.DOWN
 	
@@ -77,3 +84,17 @@ func animate(delta):
 			animator.set("parameters/iwr_blend/blend_amount", lerp(animator.get("parameters/iwr_blend/blend_amount"), -1.0, delta * ANIMATION_BLEND))
 	else:
 		animator.set("parameters/ground_air_transition/transition_request", "air")
+
+
+func add_to_inventory(item):
+	inventory.add_to_inventory(item)
+
+
+func _on_sensor_area_entered(area):
+	if area.get_parent().has_method("open"):
+		door = area.get_parent()
+
+
+func _on_sensor_area_exited(area):
+	if area.get_parent() == door:
+		door = null
