@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://odo02h4ck8qg"]
+
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="1_eojee"]
+[ext_resource type="PackedScene" uid="uid://b8kqse4vx5no5" path="res://3d art/towel.glb" id="2_f2uts"]
+[ext_resource type="Texture2D" uid="uid://cctt28qjma2pk" path="res://2d art/Blue.png" id="2_s6gbb"]
+[ext_resource type="Texture2D" uid="uid://b4tgpdopw36fq" path="res://2d art/Plain.png" id="3_g67gl"]
+[ext_resource type="Texture2D" uid="uid://b37l7l0223kgu" path="res://2d art/Stripe.png" id="4_qw4wj"]
+
+[node name="towel" instance=ExtResource("1_eojee")]
+_name = "Towel"
+textures = Array[CompressedTexture2D]([ExtResource("2_s6gbb"), ExtResource("3_g67gl"), ExtResource("4_qw4wj")])
+
+[node name="towel" parent="MeshPos" index="0" instance=ExtResource("2_f2uts")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="MeshPos" index="1"]
+visible = false
+
+[editable path="MeshPos/towel"]

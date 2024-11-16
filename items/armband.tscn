@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://dco4ky4xvbh00"]
+
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="1_ovhyr"]
+[ext_resource type="Texture2D" uid="uid://m6e2ni6sls7v" path="res://2d art/Green.png" id="2_pm8f0"]
+[ext_resource type="Texture2D" uid="uid://byvgesx6kt6ak" path="res://2d art/Orange.png" id="3_0hl12"]
+[ext_resource type="Texture2D" uid="uid://qjccga6d1doj" path="res://2d art/Spots.png" id="4_he38r"]
+[ext_resource type="PackedScene" uid="uid://crf2iff0b6vqh" path="res://3d art/armband.glb" id="5_0ce8n"]
+
+[node name="armband" instance=ExtResource("1_ovhyr")]
+_name = "Armband"
+textures = Array[CompressedTexture2D]([ExtResource("2_pm8f0"), ExtResource("3_0hl12"), ExtResource("4_he38r")])
+
+[node name="armband" parent="MeshPos" index="0" instance=ExtResource("5_0ce8n")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="MeshPos" index="1"]
+visible = false
+
+[editable path="MeshPos/armband"]

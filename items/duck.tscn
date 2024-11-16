@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1q1ufjml72u6"]
+
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="1_1nlrj"]
+[ext_resource type="AudioStream" uid="uid://bglra7smyd8wl" path="res://audio/duck.ogg" id="2_a7ja7"]
+[ext_resource type="PackedScene" uid="uid://g50gwy0hbsyq" path="res://3d art/duck.glb" id="2_jhwk0"]
+
+[node name="duck" instance=ExtResource("1_1nlrj")]
+_name = "Duck"
+audio = ExtResource("2_a7ja7")
+
+[node name="duck" parent="MeshPos" index="0" instance=ExtResource("2_jhwk0")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="MeshPos" index="1"]
+visible = false

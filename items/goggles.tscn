@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctuupnn5wroli"]
+
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="1_eters"]
+[ext_resource type="PackedScene" uid="uid://b03k86pp37ms" path="res://3d art/goggles.glb" id="2_6g4hk"]
+
+[node name="goggles" instance=ExtResource("1_eters")]
+_name = "Goggles"
+
+[node name="MeshInstance3D" parent="MeshPos" index="0"]
+visible = false
+
+[node name="goggles2" parent="MeshPos" index="1" instance=ExtResource("2_6g4hk")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
