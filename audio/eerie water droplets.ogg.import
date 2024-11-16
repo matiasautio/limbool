@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ccplys4fhi2r3"
+path="res://.godot/imported/eerie water droplets.ogg-49a1c74d10f7b1345962bdfe0f0e40ff.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/eerie water droplets.ogg"
+dest_files=["res://.godot/imported/eerie water droplets.ogg-49a1c74d10f7b1345962bdfe0f0e40ff.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

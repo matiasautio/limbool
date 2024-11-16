@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cuet6q1u1kpc0"
+path="res://.godot/imported/water splashing and gurgles.ogg-9c8df22a79505fbe9d79dc009c97f7f5.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/water splashing and gurgles.ogg"
+dest_files=["res://.godot/imported/water splashing and gurgles.ogg-9c8df22a79505fbe9d79dc009c97f7f5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
