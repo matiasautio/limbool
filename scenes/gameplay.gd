@@ -14,10 +14,13 @@ var water_tween
 @export var water_level_change = 0.25
 @export var water_level_threshold = 2
 
+@export var spin_water = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	AudioManager.ambience_sound.play()
+	if !AudioManager.ambience_sound.playing:
+		AudioManager.ambience_sound.play()
 	GameManager.fade_in()
 	for trigger in color_triggers:
 		trigger.body_entered.connect(_on_change_water_color_trigger_body_entered.bind(trigger))
@@ -56,6 +59,10 @@ func _on_change_water_color_trigger_body_entered(body, area):
 func change_water_level(amount):
 	var new_water_pos = $Water.position + Vector3(0, amount, 0)
 	water_tween = create_tween()
-	water_tween.tween_property($Water, "position", new_water_pos, 8).set_trans(Tween.TRANS_LINEAR)
+	water_tween.tween_property($Water, "position", new_water_pos, 8).set_trans(Tween.TRANS_QUAD)
+	if spin_water:
+		var new_water_rotation = $Water.rotation_degrees + Vector3(0,180,0)
+		var spin_tweem = create_tween()
+		spin_tweem.tween_property($Water, "rotation_degrees", new_water_rotation, 8).set_trans(Tween.TRANS_QUAD)
 	#water_level_change += 0.25
 	#water_tween.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mayeyheyaxm4"]
+[gd_scene load_steps=7 format=3 uid="uid://cq430pfjhfyv8"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_8ya1m"]
 [ext_resource type="AudioStream" uid="uid://b30amejn0vpqe" path="res://audio/pool-ambience.ogg" id="2_1btpg"]

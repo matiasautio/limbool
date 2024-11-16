@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu4k01ymmbxsm"]
+
+[ext_resource type="Script" path="res://menus/sensitivity_menu.gd" id="1_2p1gn"]
+[ext_resource type="Texture2D" uid="uid://d8silogoswjf" path="res://menus/limbool placeholder image.png" id="2_3q416"]
+[ext_resource type="Theme" path="res://UI/text theme.tres" id="3_nih35"]
+[ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="4_s2owj"]
+
+[node name="Sensitivity menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2p1gn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -57.5
+offset_right = 115.0
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3q416")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -29.5
+offset_right = 520.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_nih35")
+text = "Mouse Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back to settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -112.0
+offset_right = 158.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_s2owj")
+text = "Back"
+
+[connection signal="pressed" from="Back to settings" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Back to settings" to="." method="_on_back_to_settings_pressed"]
