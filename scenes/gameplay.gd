@@ -13,6 +13,7 @@ var change = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	AudioManager.ambience_sound.play()
 	GameManager.fade_in()
 	for trigger in color_triggers:
 		trigger.body_entered.connect(_on_change_water_color_trigger_body_entered.bind(trigger))

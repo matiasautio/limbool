@@ -19,3 +19,5 @@ stream = ExtResource("3_3w3dm")
 stream = ExtResource("4_5dyup")
 
 [node name="RubberDuck" type="AudioStreamPlayer" parent="."]
+
+[node name="WaterSplash" type="AudioStreamPlayer" parent="."]
