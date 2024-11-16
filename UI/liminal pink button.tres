@@ -5,6 +5,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjuve"]
 bg_color = Color(0.81, 0.6156, 0.81, 0.509804)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_bjuve")

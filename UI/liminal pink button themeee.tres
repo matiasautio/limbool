@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dv5r604ywelkl"]
+
+[ext_resource type="StyleBox" uid="uid://5gnsh8qjqnkv" path="res://UI/Pink button.tres" id="1_uagfu"]
+[ext_resource type="StyleBox" uid="uid://cm8fxwte2wmaw" path="res://UI/Pink button press.tres" id="2_bvcsx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjuve"]
+bg_color = Color(0.81, 0.6156, 0.81, 0.509804)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_bjuve")
+Button/styles/normal = ExtResource("1_uagfu")
+Button/styles/pressed = ExtResource("2_bvcsx")
