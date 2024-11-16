@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://mayeyheyaxm4"]
+[gd_scene load_steps=7 format=3 uid="uid://mayeyheyaxm4"]
 
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="1_8ya1m"]
 [ext_resource type="AudioStream" uid="uid://b30amejn0vpqe" path="res://audio/pool-ambience.ogg" id="2_1btpg"]
 [ext_resource type="AudioStream" uid="uid://bukbigpl4svl8" path="res://audio/donut-impact.ogg" id="3_3w3dm"]
 [ext_resource type="AudioStream" uid="uid://cm1blbmm3cn5g" path="res://audio/trampoline bounce.ogg" id="4_5dyup"]
+[ext_resource type="AudioStream" uid="uid://cuet6q1u1kpc0" path="res://audio/water splashing and gurgles.ogg" id="5_bxnba"]
+[ext_resource type="AudioStream" uid="uid://c8owkpbknd1hm" path="res://audio/duck.mp3" id="5_hfgyw"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_8ya1m")
@@ -19,5 +21,8 @@ stream = ExtResource("3_3w3dm")
 stream = ExtResource("4_5dyup")
 
 [node name="RubberDuck" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hfgyw")
 
 [node name="WaterSplash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bxnba")
+parameters/looping = false

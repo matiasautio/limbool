@@ -49,9 +49,6 @@ func _physics_process(delta):
 	
 	
 	if move_direction:
-		if not is_moving:
-			AudioManager.water_splash.play()
-			is_moving = true
 		velocity.x = move_toward(velocity.x, move_direction.x * speed, acceleration * delta)
 		#move_direction.x * speed
 		velocity.z = move_toward(velocity.z, move_direction.z * speed, acceleration * delta)
@@ -60,13 +57,21 @@ func _physics_process(delta):
 		player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(velocity.x, velocity.z), LERP_VALUE)
 		
 	else:
-		if is_moving:
-			AudioManager.water_splash.stop()
-			is_moving = false
 		velocity.x = move_toward(velocity.x, 0, friction)
 		velocity.z = move_toward(velocity.z, 0, friction)
 
-	
+	if move_direction != Vector3.ZERO:
+		if not is_moving:
+			AudioManager.water_splash.play()
+			is_moving = true
+	else:
+		if is_moving:
+			AudioManager.water_splash.stop()
+			is_moving = false
+			
+
+
+		
 	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
@@ -118,9 +123,11 @@ func _on_sensor_area_exited(area):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "Wall" and not has_collided_with_wall:
 		AudioManager.donut_impact.play()
+		print("Player collided with the wall")
 		has_collided_with_wall = true
 
 
-func _on_area_3d_area_exited(area: Area3D) -> void:
-	if area.get_parent().name == "Wall":
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.name == "Wall" and has_collided_with_wall:
+		print("Player exited the wall")
 		has_collided_with_wall = false
