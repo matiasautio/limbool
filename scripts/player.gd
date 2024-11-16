@@ -13,6 +13,8 @@ var speed : float
 @export var acceleration = 0.25
 @export var friction = 0.05
 
+var jump_impulse = false
+
 const ANIMATION_BLEND : float = 7.0
 
 @onready var player_mesh : Node3D = $Mesh
@@ -22,6 +24,7 @@ const ANIMATION_BLEND : float = 7.0
 @export var inventory : Control
 
 var door = null
+var valve = null
 
 var has_collided_with_wall = false
 var is_moving = false
@@ -39,21 +42,12 @@ func _physics_process(delta):
 	
 	velocity.y -= gravity * delta
 	
-	#if Input.is_action_pressed("run"):
-		#speed = run_speed
-	#else:
 	speed = walk_speed
-
-	#velocity.x = move_toward(velocity.x, move_direction.x * speed, acceleration * delta)
-	#velocity.z = move_toward(velocity.z, move_direction.z * speed, acceleration * delta)
-	
-	
 	if move_direction:
 		velocity.x = move_toward(velocity.x, move_direction.x * speed, acceleration * delta)
 		#move_direction.x * speed
 		velocity.z = move_toward(velocity.z, move_direction.z * speed, acceleration * delta)
 		#move_direction.z * speed
-	
 		player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(velocity.x, velocity.z), LERP_VALUE)
 		
 	else:
@@ -68,21 +62,21 @@ func _physics_process(delta):
 		if is_moving:
 			AudioManager.water_splash.stop()
 			is_moving = false
-			
-
-
-		
 	var just_landed := is_on_floor() and snap_vector == Vector3.ZERO
-	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
-	if is_jumping:
+	var using_item = Input.is_action_just_pressed("jump")
+	if using_item:
 		if inventory.get_current_item() != null:
 			inventory.get_current_item().on_frob()
 		if door != null:
-			if door.open(inventory.get_current_item_name()):
-				inventory.get_current_item().on_frob()
-				inventory.remove_from_inventory(inventory.get_current_item())
-		#velocity.y = jump_strength
-		#snap_vector = Vector3.ZERO
+			door.open(inventory.get_current_item_name())
+		if valve != null:
+			valve.change_water_level(inventory.get_current_item_name())
+				#inventory.get_current_item().on_frob()
+				#inventory.remove_from_inventory(inventory.get_current_item())
+	if jump_impulse:
+		jump_impulse = false
+		velocity.y = jump_strength
+		snap_vector = Vector3.ZERO
 	elif just_landed:
 		snap_vector = Vector3.DOWN
 	
@@ -113,11 +107,15 @@ func add_to_inventory(item):
 func _on_sensor_area_entered(area):
 	if area.get_parent().has_method("open"):
 		door = area.get_parent()
+	elif area.has_method("change_water_level"):
+		valve = area
 
 
 func _on_sensor_area_exited(area):
 	if area.get_parent() == door:
 		door = null
+	elif area == valve:
+		valve = null
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -131,3 +129,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.name == "Wall" and has_collided_with_wall:
 		print("Player exited the wall")
 		has_collided_with_wall = false
+
+
+func jump():
+	if !jump_impulse:
+		jump_impulse = true
