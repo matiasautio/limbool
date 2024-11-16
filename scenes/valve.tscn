@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmlqo0cu60hl"]
+
+[ext_resource type="Script" path="res://scenes/water_level_changer.gd" id="1_y354i"]
+[ext_resource type="PackedScene" uid="uid://luinl7w0eyme" path="res://3d art/valve.glb" id="2_tskxj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cddo6"]
+size = Vector3(2.46094, 2.08984, 1)
+
+[sub_resource type="Animation" id="Animation_2or64"]
+resource_name = "rotate"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("valve:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_o2h3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("valve:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_12hqh"]
+_data = {
+"RESET": SubResource("Animation_o2h3t"),
+"rotate": SubResource("Animation_2or64")
+}
+
+[node name="Valve" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.43983, 1.28042, -24.2393)
+script = ExtResource("1_y354i")
+water_level_change = 3.75
+metadata/_edit_group_ = true
+
+[node name="valve" parent="." instance=ExtResource("2_tskxj")]
+transform = Transform3D(1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cddo6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_12hqh")
+}

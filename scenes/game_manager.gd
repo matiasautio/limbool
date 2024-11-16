@@ -3,6 +3,8 @@ extends Node
 @onready var animation_player = $CanvasLayer/Control/AnimationPlayer
 @onready var fade_out_rect = $CanvasLayer/Control/FadeOut
 
+@export var inventory : Control
+
 
 func fade_in():
 	if fade_out_rect.visible:
