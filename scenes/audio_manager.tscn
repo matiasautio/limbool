@@ -6,9 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://cm1blbmm3cn5g" path="res://audio/trampoline bounce.ogg" id="4_5dyup"]
 [ext_resource type="AudioStream" uid="uid://cuet6q1u1kpc0" path="res://audio/water splashing and gurgles.ogg" id="5_bxnba"]
 [ext_resource type="AudioStream" uid="uid://c8owkpbknd1hm" path="res://audio/duck.mp3" id="5_hfgyw"]
-[ext_resource type="AudioStream" uid="uid://d1jgb0emeq282" path="res://audio/Generic pick up.wav" id="7_qdi8x"]
+[ext_resource type="AudioStream" uid="uid://bmasra4lntcpf" path="res://audio/Generic pick up.wav" id="7_qdi8x"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_8ya1m")
 
 [node name="AmbienceSound" type="AudioStreamPlayer" parent="."]

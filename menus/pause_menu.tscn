@@ -1,18 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvau3t36moiqg"]
+[gd_scene load_steps=9 format=3 uid="uid://dvau3t36moiqg"]
 
 [ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_4ok0i"]
 [ext_resource type="Shader" path="res://menus/pause_menu.gdshader" id="1_1063i"]
-[ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="3_s6752"]
+[ext_resource type="Theme" uid="uid://cpocq88n7usng" path="res://UI/liminal pink button themeee.tres" id="3_s6752"]
+[ext_resource type="PackedScene" uid="uid://dcueauhnrx0s1" path="res://menus/settings_menu.tscn" id="4_okh52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gmqfh"]
 shader = ExtResource("1_1063i")
-shader_parameter/lod = 0.0
+shader_parameter/lod = 0.8
 
 [sub_resource type="Animation" id="Animation_rsqf1"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -71,7 +72,7 @@ resource_name = "blur"
 length = 0.3
 tracks/0/type = "bezier"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -133,7 +134,6 @@ _data = {
 
 [node name="Pause menu" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,6 +144,7 @@ mouse_filter = 1
 script = ExtResource("1_4ok0i")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_gmqfh")
 layout_mode = 1
 anchors_preset = 15
@@ -151,6 +152,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0.374613, 0.59059, 0.392157)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -167,6 +179,7 @@ offset_right = 100.0
 offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -198,7 +211,12 @@ libraries = {
 "": SubResource("AnimationLibrary_r4cgg")
 }
 
+[node name="Menu" parent="." instance=ExtResource("4_okh52")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit to menu" to="." method="_on_quit_to_menu_pressed"]
+[connection signal="closed" from="Menu" to="." method="setting_menu_closed"]

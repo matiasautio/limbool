@@ -32,6 +32,10 @@ var valve = null
 var has_collided_with_wall = false
 var is_moving = false
 
+@export var can_play = true
+
+var gameplay = null
+
 
 func _ready():
 	if GameManager.player_texture == null:
@@ -48,10 +52,13 @@ func _ready():
 		var material = StandardMaterial3D.new()
 		material.albedo_texture = GameManager.player_texture
 		$Mesh/humanoid/MESH_Base.set_surface_override_material(0, material)
+	$SpringArmPivot.can_play = can_play
 	#Input.add_joy_mapping("030000000d0f0000ab01000095000000,HORIPAD STEAM,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b16,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X")
 
 
 func _physics_process(delta):
+	if !can_play:
+		return
 	var move_direction : Vector3 = Vector3.ZERO
 	move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	move_direction.z = Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -101,6 +108,7 @@ func _physics_process(delta):
 	move_and_slide()
 	animate(delta)
 
+
 func animate(delta):
 	if is_on_floor():
 		animator.set("parameters/ground_air_transition/transition_request", "grounded")
@@ -118,7 +126,13 @@ func animate(delta):
 
 func add_to_inventory(item):
 	inventory.add_to_inventory(item)
-	AudioManager.rubber_duck.play()
+	AudioManager.generic_pick_up.play()
+	if gameplay.level == 0:
+		$How2UI/use_item.show()
+		$UIAnimation.play("display_hint")
+	elif gameplay.level == 1:
+		$How2UI/change_items.show()
+		$UIAnimation.play("display_hint")
 
 
 func _on_sensor_area_entered(area):
@@ -136,14 +150,14 @@ func _on_sensor_area_exited(area):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.name == "Wall" and not has_collided_with_wall:
+	if body.is_in_group("wall") and not has_collided_with_wall:
 		AudioManager.donut_impact.play()
 		print("Player collided with the wall")
 		has_collided_with_wall = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.name == "Wall" and has_collided_with_wall:
+	if body.is_in_group("wall") and has_collided_with_wall:
 		print("Player exited the wall")
 		has_collided_with_wall = false
 

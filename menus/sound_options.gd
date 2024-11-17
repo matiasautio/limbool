@@ -1,5 +1,7 @@
 extends Control
 
+signal closed
+
 func _ready() -> void:
 	$VBoxContainer/HSlider.value = AudioServer.get_bus_volume_db(0)
 	$VBoxContainer/HSlider2.value = AudioServer.get_bus_volume_db(1)
@@ -7,7 +9,8 @@ func _ready() -> void:
 
 
 func _on_apply_pressed() -> void:
-	get_tree().change_scene_to_file("res://menus/settings_menu.tscn")
+	emit_signal("closed")
+	#get_tree().change_scene_to_file("res://menus/settings_menu.tscn")
 
 # Master
 func _on_h_slider_value_changed(value):

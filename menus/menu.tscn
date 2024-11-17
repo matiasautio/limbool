@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7yncieb8epe8"]
+[gd_scene load_steps=5 format=3 uid="uid://c7yncieb8epe8"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_1t5ig"]
 [ext_resource type="Texture2D" uid="uid://d8silogoswjf" path="res://menus/limbool placeholder image.png" id="2_5p0j4"]
-[ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="3_1e667"]
+[ext_resource type="Theme" uid="uid://cpocq88n7usng" path="res://UI/liminal pink button themeee.tres" id="3_1e667"]
+[ext_resource type="PackedScene" uid="uid://dcueauhnrx0s1" path="res://menus/settings_menu.tscn" id="5_qxu86"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -59,6 +60,15 @@ layout_mode = 2
 theme = ExtResource("3_1e667")
 text = "Quit"
 
+[node name="Menu" parent="." instance=ExtResource("5_qxu86")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="closed" from="Menu" to="." method="settings_closed"]
+
+[editable path="Menu"]
+[editable path="Menu/Audio menu"]
+[editable path="Menu/Sensitivity menu"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcueauhnrx0s1"]
+[gd_scene load_steps=6 format=3 uid="uid://dcueauhnrx0s1"]
 
 [ext_resource type="Script" path="res://menus/settings_menu.gd" id="1_yb7y5"]
 [ext_resource type="Texture2D" uid="uid://d8silogoswjf" path="res://menus/limbool placeholder image.png" id="2_26s7s"]
-[ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="3_jf60b"]
+[ext_resource type="Theme" uid="uid://cpocq88n7usng" path="res://UI/liminal pink button themeee.tres" id="3_jf60b"]
+[ext_resource type="PackedScene" uid="uid://dcvq7ww5jgg3m" path="res://menus/audio_menu.tscn" id="4_7bwwj"]
+[ext_resource type="PackedScene" uid="uid://cu4k01ymmbxsm" path="res://menus/sensitivity_menu.tscn" id="5_hen1t"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_yb7y5")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +58,19 @@ layout_mode = 2
 theme = ExtResource("3_jf60b")
 text = "Back"
 
+[node name="Audio menu" parent="." instance=ExtResource("4_7bwwj")]
+visible = false
+layout_mode = 1
+
+[node name="Sensitivity menu" parent="." instance=ExtResource("5_hen1t")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sensitivity" to="." method="_on_sensitivity_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Apply" to="." method="_on_back_pressed"]
+[connection signal="closed" from="Audio menu/Audio options" to="." method="sub_menus_closed"]
+[connection signal="closed" from="Sensitivity menu" to="." method="sub_menus_closed"]
+
+[editable path="Audio menu"]
+[editable path="Sensitivity menu"]

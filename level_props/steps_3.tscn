@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhfs1oc6degrv"]
+
+[ext_resource type="PackedScene" uid="uid://dwkvofpuu15ee" path="res://3d art/level_props/steps_3.glb" id="1_jnfce"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_210bl"]
+size = Vector3(1.19754, 0.5, 0.670654)
+
+[node name="Steps3" type="Node3D"]
+
+[node name="steps_32" parent="." instance=ExtResource("1_jnfce")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["wall"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.607834, 0.25, -0.338989)
+shape = SubResource("BoxShape3D_210bl")

@@ -19,7 +19,10 @@ func _process(delta):
 	pass
 
 func on_frob():
-	$AudioStreamPlayer.play()
+	if _name == "Duck":
+		AudioManager.rubber_duck.play()
+	if _name == "GLITCH":
+		get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 
 func _on_area_3d_body_entered(body):

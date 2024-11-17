@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd4s4rhh58s60"]
+
+[ext_resource type="PackedScene" uid="uid://bqk75tlbxhxh2" path="res://items/item.tscn" id="1_fh47l"]
+[ext_resource type="AudioStream" uid="uid://bglra7smyd8wl" path="res://audio/duck.ogg" id="2_aoysh"]
+[ext_resource type="PackedScene" uid="uid://g50gwy0hbsyq" path="res://3d art/duck.glb" id="3_tclgd"]
+[ext_resource type="Texture2D" uid="uid://dar2l2oxn34oi" path="res://2d art/Abstract.png" id="4_nhcwc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgdge"]
+albedo_texture = ExtResource("4_nhcwc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vons"]
+albedo_texture = ExtResource("4_nhcwc")
+
+[node name="glitched_duck" instance=ExtResource("1_fh47l")]
+_name = "GLITCH"
+audio = ExtResource("2_aoysh")
+
+[node name="duck" parent="MeshPos" index="0" instance=ExtResource("3_tclgd")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Duck" parent="MeshPos/duck" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tgdge")
+surface_material_override/1 = SubResource("StandardMaterial3D_4vons")
+
+[node name="MeshInstance3D" parent="MeshPos" index="1"]
+visible = false
+
+[editable path="MeshPos/duck"]

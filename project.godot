@@ -13,7 +13,7 @@ config_version=5
 config/name="Limbool"
 run/main_scene="res://menus/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -23,6 +23,10 @@ AudioManager="*res://scenes/audio_manager.tscn"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
+
+[global_group]
+
+wall=""
 
 [input]
 

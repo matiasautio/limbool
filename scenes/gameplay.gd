@@ -16,6 +16,8 @@ var water_tween
 
 @export var spin_water = false
 
+@export var level = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +29,8 @@ func _ready():
 	current_water = water.get_surface_override_material(0).get_shader_parameter("out_color")
 	old_color = current_water
 	$Player.inventory = GameManager.inventory
+	$Player.gameplay = self
+	GameManager.in_menu = false
 	#_on_change_water_color_trigger_body_entered(null)
 
 

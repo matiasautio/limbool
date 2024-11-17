@@ -7,6 +7,8 @@ extends Node
 
 var player_texture = null
 
+var in_menu = true
+
 
 func fade_in():
 	if fade_out_rect.visible:

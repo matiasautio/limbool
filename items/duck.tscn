@@ -9,7 +9,7 @@ _name = "Duck"
 audio = ExtResource("2_a7ja7")
 
 [node name="duck" parent="MeshPos" index="0" instance=ExtResource("2_jhwk0")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 
 [node name="MeshInstance3D" parent="MeshPos" index="1"]
 visible = false

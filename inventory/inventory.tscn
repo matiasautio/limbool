@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://rwi1rb352noo"]
+[gd_scene load_steps=7 format=3 uid="uid://rwi1rb352noo"]
 
+[ext_resource type="Theme" uid="uid://cpocq88n7usng" path="res://UI/liminal pink button themeee.tres" id="1_7t32n"]
 [ext_resource type="Script" path="res://inventory/inventory.gd" id="1_qmd3u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_isegn"]
@@ -39,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_7t32n")
 script = ExtResource("1_qmd3u")
 
 [node name="TextureRect" type="TextureRect" parent="."]

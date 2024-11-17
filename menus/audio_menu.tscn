@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d8silogoswjf" path="res://menus/limbool placeholder image.png" id="2_3fhnu"]
 [ext_resource type="Script" path="res://menus/sound_options.gd" id="2_mlw1b"]
 [ext_resource type="Theme" path="res://UI/text theme.tres" id="4_4w7uf"]
-[ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="5_kae7f"]
+[ext_resource type="Theme" uid="uid://cpocq88n7usng" path="res://UI/liminal pink button themeee.tres" id="5_kae7f"]
 
 [sub_resource type="Theme" id="Theme_g0em0"]
 HSlider/styles/slider = null
@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

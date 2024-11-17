@@ -112,7 +112,8 @@ libraries = {
 "": SubResource("AnimationLibrary_jf6e6")
 }
 
-[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("2_3de0q")]
-mouse_filter = 1
+[node name="Pause menu" parent="CanvasLayer/Control" instance=ExtResource("2_3de0q")]
+visible = false
+layout_mode = 1
 
 [node name="Inventory" parent="." instance=ExtResource("2_03ggm")]

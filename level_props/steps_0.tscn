@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5n30ma347y2t"]
+
+[ext_resource type="PackedScene" uid="uid://xihtphijuxrm" path="res://3d art/level_props/steps_0.glb" id="1_3dkju"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofr63"]
+albedo_color = Color(0, 0.415686, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhx38"]
+size = Vector3(1.49829, 0.598267, 1.50372)
+
+[node name="Steps0" type="Node3D"]
+
+[node name="steps_02" parent="." instance=ExtResource("1_3dkju")]
+
+[node name="steps_0" parent="steps_02" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00416958, -0.00339818, -0.000735521)
+surface_material_override/1 = SubResource("StandardMaterial3D_ofr63")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["wall"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245361, 0.305481, 0.00820923)
+shape = SubResource("BoxShape3D_mhx38")
+
+[editable path="steps_02"]

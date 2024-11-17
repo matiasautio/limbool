@@ -15,7 +15,10 @@ func _process(delta):
 
 func _on_area_3d_body_entered(body):
 	if body.name == "Player":
-		GameManager.fade_out()
-		await get_tree().create_timer(2).timeout
-		#get_tree().call_deferred("reload_current_scene")
-		get_tree().change_scene_to_packed(scene_to_change_to)
+		if scene_to_change_to == null:
+			get_tree().call_deferred("reload_current_scene")
+		else:
+			GameManager.fade_out()
+			await get_tree().create_timer(2).timeout
+			#get_tree().call_deferred("reload_current_scene")
+			get_tree().change_scene_to_packed(scene_to_change_to)

@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cpocq88n7usng"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cpocq88n7usng"]
 
 [ext_resource type="StyleBox" uid="uid://5gnsh8qjqnkv" path="res://UI/Pink button.tres" id="1_uagfu"]
 [ext_resource type="StyleBox" uid="uid://cm8fxwte2wmaw" path="res://UI/Pink button press.tres" id="2_bvcsx"]
+[ext_resource type="FontFile" uid="uid://d3xcp1uguwd1l" path="res://UI/font/OPTIFranklinGothTrplCndSix.otf" id="3_7vuv5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjuve"]
 bg_color = Color(0.81, 0.6156, 0.81, 0.509804)
@@ -11,6 +12,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
+default_font = ExtResource("3_7vuv5")
 Button/styles/hover = SubResource("StyleBoxFlat_bjuve")
 Button/styles/normal = ExtResource("1_uagfu")
 Button/styles/pressed = ExtResource("2_bvcsx")
