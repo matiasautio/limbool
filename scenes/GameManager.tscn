@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6nj2l8god4qi"]
 
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_1nsa3"]
-[ext_resource type="PackedScene" uid="uid://b7dx2fdtbg1ny" path="res://menus/pause_menu.tscn" id="2_3de0q"]
+[ext_resource type="PackedScene" uid="uid://dvau3t36moiqg" path="res://menus/pause_menu.tscn" id="2_3de0q"]
 [ext_resource type="PackedScene" uid="uid://rwi1rb352noo" path="res://inventory/inventory.tscn" id="2_03ggm"]
 
 [sub_resource type="Animation" id="Animation_vv655"]
@@ -113,5 +113,6 @@ libraries = {
 }
 
 [node name="Pause menu" parent="CanvasLayer" instance=ExtResource("2_3de0q")]
+mouse_filter = 1
 
 [node name="Inventory" parent="." instance=ExtResource("2_03ggm")]

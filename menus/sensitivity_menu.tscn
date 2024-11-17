@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/sensitivity_menu.gd" id="1_2p1gn"]
 [ext_resource type="Texture2D" uid="uid://d8silogoswjf" path="res://menus/limbool placeholder image.png" id="2_3q416"]
-[ext_resource type="Theme" uid="uid://c1jlg0tibacxv" path="res://UI/text theme.tres" id="3_nih35"]
+[ext_resource type="Theme" path="res://UI/text theme.tres" id="3_nih35"]
 [ext_resource type="Theme" uid="uid://cy86qqmkytmy5" path="res://UI/liminal pink button themeee.tres" id="4_s2owj"]
 
 [node name="Sensitivity menu" type="Control"]
@@ -69,5 +69,5 @@ grow_vertical = 0
 theme = ExtResource("4_s2owj")
 text = "Back"
 
-[connection signal="pressed" from="Back to settings" to="." method="_on_back_to_settings_pressed"]
 [connection signal="pressed" from="Back to settings" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Back to settings" to="." method="_on_back_to_settings_pressed"]

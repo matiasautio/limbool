@@ -23,6 +23,9 @@ const ANIMATION_BLEND : float = 7.0
 
 @export var inventory : Control
 
+@export var textures : Array[CompressedTexture2D]
+var alien_texture = preload("res://2d art/Alien_humanoid.png")
+
 var door = null
 var valve = null
 
@@ -30,7 +33,21 @@ var has_collided_with_wall = false
 var is_moving = false
 
 
-#func _ready():
+func _ready():
+	if GameManager.player_texture == null:
+		var material = StandardMaterial3D.new()
+		var picked_texture
+		if randi_range(0, 10) > 9:
+			picked_texture = alien_texture
+		else:
+			picked_texture = textures.pick_random()
+		material.albedo_texture = picked_texture
+		$Mesh/humanoid/MESH_Base.set_surface_override_material(0, material)
+		GameManager.player_texture = picked_texture
+	else:
+		var material = StandardMaterial3D.new()
+		material.albedo_texture = GameManager.player_texture
+		$Mesh/humanoid/MESH_Base.set_surface_override_material(0, material)
 	#Input.add_joy_mapping("030000000d0f0000ab01000095000000,HORIPAD STEAM,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b16,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X")
 
 

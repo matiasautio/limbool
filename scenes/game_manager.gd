@@ -5,6 +5,8 @@ extends Node
 
 @export var inventory : Control
 
+var player_texture = null
+
 
 func fade_in():
 	if fade_out_rect.visible:
