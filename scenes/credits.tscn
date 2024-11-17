@@ -192,3 +192,19 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[right]Games Now Jam 15
 2024"
+
+[node name="Title" type="RichTextLabel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -521.0
+offset_top = -24.0
+offset_right = 522.0
+offset_bottom = 311.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.862745, 0.396078, 0.835294, 1)
+theme_override_font_sizes/normal_font_size = 250
+bbcode_enabled = true
+text = "[center]LIMBOOL"

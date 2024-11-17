@@ -15,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_1t5ig")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,9 +36,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -155.0
-offset_top = -54.5
+offset_top = 89.5
 offset_right = 155.0
-offset_bottom = 54.5
+offset_bottom = 198.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -63,6 +64,30 @@ text = "Quit"
 [node name="Menu" parent="." instance=ExtResource("5_qxu86")]
 visible = false
 layout_mode = 1
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_1e667")
+
+[node name="Title" type="RichTextLabel" parent="Title"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -521.5
+offset_right = 521.5
+offset_bottom = 212.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.862745, 0.396078, 0.835294, 1)
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[center]LIMBOOL"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

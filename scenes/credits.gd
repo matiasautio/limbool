@@ -17,4 +17,6 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("esc"):
-		get_tree().change_scene_to_file("res://menus/menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	elif event.is_action_pressed("jump"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
