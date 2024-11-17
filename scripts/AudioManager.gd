@@ -4,4 +4,4 @@ extends Node
 @onready var rubber_duck: AudioStreamPlayer = $RubberDuck
 @onready var ambience_sound: AudioStreamPlayer = $AmbienceSound
 @onready var water_splash: AudioStreamPlayer = $WaterSplash
-"res://audio/Generic pick up.wav"
+@onready var generic_pick_up: AudioStreamPlayer = $GenericPickUp
