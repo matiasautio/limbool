@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://tlttsf2ksoot"]
+
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_poplt"]
+
+[node name="FreeLookCamera" type="Camera3D"]
+current = true
+script = ExtResource("1_poplt")
