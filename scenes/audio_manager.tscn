@@ -12,17 +12,22 @@ script = ExtResource("1_8ya1m")
 
 [node name="AmbienceSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1btpg")
+bus = &"Music"
 parameters/looping = false
 
 [node name="DonutImpact" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3w3dm")
+bus = &"SFX"
 
 [node name="TrampolineBounce" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5dyup")
+bus = &"SFX"
 
 [node name="RubberDuck" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hfgyw")
+bus = &"SFX"
 
 [node name="WaterSplash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bxnba")
+bus = &"SFX"
 parameters/looping = false
